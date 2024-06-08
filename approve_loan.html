@@ -1,0 +1,81 @@
+<!-- approve_loan.html -->
+<h1>Approve Loan</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <h4>Approve Loan</h4>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="loanId">Enter Loan ID</label>
+      <input
+        type="text"
+        class="form-control"
+        id="loanId"
+        placeholder="Loan ID"
+      />
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>&nbsp;</label>
+      <button type="button" class="btn btn-success btn-block">Approve</button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h4>Search Approved Loans</h4>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="searchLoan"
+        placeholder="Search"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h4>Approved Loans</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Loan ID</th>
+          <th>User</th>
+          <th>Loan Amount</th>
+          <th>Status</th>
+          <th>Amount Paid</th>
+          <th>Tenure Remaining</th>
+          <th>Actions</th>
+          <!-- New column for actions -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Table rows with loan details and actions -->
+        <tr>
+          <td>123</td>
+          <td>John Doe</td>
+          <td>$5000</td>
+          <td>Approved</td>
+          <td>$1000</td>
+          <td>8 months</td>
+          <td>
+            <!-- Action buttons -->
+            <button type="button" class="btn btn-primary btn-sm">Edit</button>
+            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            <button type="button" class="btn btn-info btn-sm">
+              Send Message
+            </button>
+          </td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<!-- document_management_component.html -->
+<h1>Document Management</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <form id="documentForm">
+      <div class="form-group">
+        <label for="memberId">Member ID</label>
+        <input
+          type="text"
+          class="form-control"
+          id="memberId"
+          placeholder="Enter member ID"
+        />
+      </div>
+      <div class="form-group">
+        <label for="reportRatio">Report Ratio</label>
+        <input
+          type="text"
+          class="form-control"
+          id="reportRatio"
+          placeholder="Enter report ratio"
+        />
+      </div>
+      <div class="form-group">
+        <label for="mode">Mode</label>
+        <select class="form-control" id="mode">
+          <option value="download">Download</option>
+          <option value="send">Send to member</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Generate Document</button>
+    </form>
+  </div>
+</div>
+
+<!-- Include Google Charts library -->
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  // Load the Visualization API and the corechart package.
+  google.charts.load("current", { packages: ["corechart"] });
+
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.charts.setOnLoadCallback(drawCharts);
+
+  function drawCharts() {
+    // Sample data for the charts
+    const loanApprovalData = [
+      ["Month", "Loan Approvals"],
+      ["Jan", 20],
+      ["Feb", 35],
+      ["Mar", 40],
+      ["Apr", 55],
+      ["May", 50],
+      ["Jun", 70],
+    ];
+
+    const memberGrowthData = [
+      ["Month", "New Members"],
+      ["Jan", 10],
+      ["Feb", 20],
+      ["Mar", 30],
+      ["Apr", 25],
+      ["May", 40],
+      ["Jun", 50],
+    ];
+
+    // Creating the Loan Approval Trend chart
+    const loanApprovalChart = new google.visualization.ColumnChart(
+      document.getElementById("loanApprovalChart")
+    );
+    loanApprovalChart.draw(
+      google.visualization.arrayToDataTable(loanApprovalData),
+      {
+        title: "Loan Approval Trend",
+        colors: ["#2196F3"],
+      }
+    );
+
+    // Creating the Member Growth chart
+    const memberGrowthChart = new google.visualization.LineChart(
+      document.getElementById("memberGrowthChart")
+    );
+    memberGrowthChart.draw(
+      google.visualization.arrayToDataTable(memberGrowthData),
+      {
+        title: "Member Growth",
+        colors: ["#FF5722"],
+      }
+    );
+  }
+</script>

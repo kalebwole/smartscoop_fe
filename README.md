@@ -1,1 +1,0 @@
-# smartscoop_fe

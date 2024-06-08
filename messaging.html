@@ -1,0 +1,149 @@
+<!-- messaging_component.html -->
+<h1>Messaging</h1>
+
+<!-- Tab navigation -->
+<ul class="nav nav-tabs" id="messagingTabs" role="tablist">
+  <li class="nav-item">
+    <a
+      class="nav-link active"
+      id="sendMessages-tab"
+      data-toggle="tab"
+      href="#sendMessages"
+      role="tab"
+      aria-controls="sendMessages"
+      aria-selected="true"
+      >Send Message</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      id="receivedMessages-tab"
+      data-toggle="tab"
+      href="#receivedMessages"
+      role="tab"
+      aria-controls="receivedMessages"
+      aria-selected="false"
+      >Received Messages</a
+    >
+  </li>
+</ul>
+
+<!-- Tab content -->
+<div class="tab-content" id="messagingTabContent">
+  <!-- Send Message tab -->
+  <div
+    class="tab-pane fade show active"
+    id="sendMessages"
+    role="tabpanel"
+    aria-labelledby="sendMessages-tab"
+  >
+    <div class="row">
+      <div class="col-md-6">
+        <form id="sendMessageForm">
+          <div class="form-group">
+            <label for="recipientId">Recipient ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="recipientId"
+              placeholder="Enter recipient ID"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              class="form-control"
+              id="message"
+              rows="3"
+              placeholder="Enter your message"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="attachment">Attachment</label>
+            <input type="file" class="form-control-file" id="attachment" />
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Received Messages tab -->
+  <div
+    class="tab-pane fade"
+    id="receivedMessages"
+    role="tabpanel"
+    aria-labelledby="receivedMessages-tab"
+  >
+    <!-- Table to display received messages -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Sender</th>
+          <th scope="col">Message</th>
+          <th scope="col">Attachment</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Sample row, replace with actual data -->
+        <tr>
+          <td>John Doe</td>
+          <td>Hello, how are you?</td>
+          <td><a href="#">Attachment</a></td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#viewMessageModal"
+            >
+              View
+            </button>
+          </td>
+        </tr>
+        <!-- Add more rows for each received message -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- View Message modal -->
+<div
+  class="modal fade"
+  id="viewMessageModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="viewMessageModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewMessageModalLabel">Message Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Detailed message content goes here -->
+        <p><strong>Sender:</strong> John Doe</p>
+        <p><strong>Message:</strong> Hello, how are you?</p>
+        <p><strong>Attachment:</strong> <a href="#">Attachment</a></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include any necessary scripts -->
