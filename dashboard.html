@@ -233,6 +233,32 @@
           </div>
         </li>
         <li class="nav-item">
+          <a
+            class="nav-link collapsible"
+            data-toggle="collapse"
+            href="#settingsMenu"
+            role="button"
+            aria-expanded="false"
+            aria-controls="settingsMenu"
+          >
+            <i class="fas fa-cogs"></i> Settings
+          </a>
+          <div class="collapse" id="settingsMenu">
+            <ul class="nav flex-column ml-3">
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="loan_settings"
+                  >Loan Settings</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="loan_settings"
+                  >System Settings</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#"
             ><i class="fas fa-history"></i> Transactions</a
           >
@@ -302,42 +328,161 @@
           e.preventDefault();
           loadContent("view_cooperative.html"); // Load content from view_cooperative.html
         });
-        loadContent("default_content.html");
+
         $("#add_member").on("click", function (e) {
           e.preventDefault();
           loadContent("add_member.html");
         });
+
         $("#view_member").on("click", function (e) {
           e.preventDefault();
           loadContent("view_member.html");
         });
+
         $("#apply_loan").on("click", function (e) {
           e.preventDefault();
           loadContent("apply_loan.html");
         });
+
         $("#approve_loan").on("click", function (e) {
           e.preventDefault();
           loadContent("approve_loan.html");
         });
+
         $("#doc_mngt").on("click", function (e) {
           e.preventDefault();
           loadContent("doc_mngt.html");
         });
+
         $("#messaging").on("click", function (e) {
           e.preventDefault();
           loadContent("messaging.html");
         });
+
         $("#notification").on("click", function (e) {
           e.preventDefault();
           loadContent("notification.html");
         });
 
-        // apply_loan
+        $("#loan_settings").on("click", function (e) {
+          e.preventDefault();
+          loadContent("loan_settings.html");
+        });
+
+        loadContent("default_content.html");
 
         $("#sidebarCollapse").on("click", function () {
           $("#sidebar").toggleClass("active");
         });
       });
     </script>
+    <script>
+      // JavaScript to handle form submission
+
+      function submitform() {
+        //   // Collect form data
+        var formData = {
+          fullname: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          phoneno: document.getElementById("phone").value,
+          address: document.getElementById("address").value,
+          staff_id: document.getElementById("staff_id").value,
+          dob: document.getElementById("dob").value,
+          password: "1234", // Default password
+          gender: document.getElementById("gender").value,
+          cooperative_id: "2222222222",
+        };
+        // Send POST request to the endpoint
+        fetch("http://localhost:5000/cooperative/members/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then(function (response) {
+            if (!response.ok) {
+              throw Error(response.statusText);
+            }
+            return response.json();
+          })
+          .then(function (data) {
+            alert("Member added successfully");
+            console.log(data);
+            // Redirect to dashboard or another page if needed
+            window.location.href = "/dashboard.html"; // Example redirection
+          })
+          .catch(function (error) {
+            alert("Error adding member: " + error);
+            console.error("Error:", error);
+          });
+      }
+    </script>
+    <!-- <script>
+      $(document).ready(function () {
+        function fetchMembers() {
+         
+          $.ajax({
+            url: "http://localhost:5000/cooperative/members",
+            type: "GET",
+            success: function (response) {
+              var membersTableBody = $("#membersTableBody");
+              membersTableBody.empty(); // Clear existing rows
+
+              response.forEach(function (member) {
+                var dob = member.dob ? member.dob : "N/A";
+                var row = `
+                                    <tr>
+                                        <td>${member.id}</td>
+                                        <td>${member.fullname}</td>
+                                        <td>${member.email}</td>
+                                        <td>${member.address}</td>
+                                        <td>${member.phoneno}</td>
+                                        <td>${dob}</td>
+                                        <td>${member.gender}</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="editMember(${member.id})"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-danger" onclick="deleteMember(${member.id})"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                `;
+                membersTableBody.append(row);
+              });
+            },
+            error: function (xhr, status, error) {
+              Toastify({
+                text: "Error fetching members",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#FF0000",
+              }).showToast();
+            },
+          });
+        }
+
+        fetchMembers();
+
+        window.editMember = function (id) {
+          Toastify({
+            text: "Edit member functionality to be implemented",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#FFA500",
+          }).showToast();
+        };
+
+        window.deleteMember = function (id) {
+          Toastify({
+            text: "Delete member functionality to be implemented",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#FFA500",
+          }).showToast();
+        };
+      });
+    </script> -->
   </body>
 </html>
